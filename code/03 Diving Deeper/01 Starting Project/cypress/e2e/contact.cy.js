@@ -35,17 +35,18 @@ describe("contact form", () => {
       .parent()
       .should("have.attr", "class")
       .and("match", /invalid/)
-
+    cy.screenshot()
     cy.get('[data-cy="contact-input-email"]').focus().blur()
     cy.get('[data-cy="contact-input-email"]')
       .parent()
       .should("have.attr", "class")
       .and("match", /invalid/)
-
+    cy.screenshot()
     cy.get('[data-cy="contact-input-name"]').focus().blur()
     cy.get('[data-cy="contact-input-name"]')
       .parent()
-      .should("have.attr", "class")
-      .and("match", /invalid/)
+      .should((el) => {
+        expect(el.attr("class")).to.contain("invalid")
+      })
   })
 })
